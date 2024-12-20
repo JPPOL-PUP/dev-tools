@@ -1,0 +1,12 @@
+target/
+project/target/
+.idea/
+.vscode/
+*.log
+*.class
+*.lock
+.ivy2/
+.coursier/
+.metals/
+.DS_Store
+node-modules/
