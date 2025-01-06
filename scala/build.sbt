@@ -1,16 +1,31 @@
 import scala.collection.Seq
 
-name := "publication-platform-scala-lint-format"
+val githubOrganizationName = "JPPOL-PUP"
+val githubProjectName = "dev-tools"
 
-version := "1.0-SNAPSHOT"
-
-lazy val `publication-platform-scala-lint-format` = (project in file("."))
-
-scalaVersion := "2.12.13"
-
-publishTo := Some(
-  "GitHub Packages" at s"https://maven.pkg.github.com/jppol-pup/github-shared-resources"
+lazy val publishSettings = Seq(
+  publishTo := Some(s"GitHub Package Registry ($githubProjectName)" at s"https://maven.pkg.github.com/$githubOrganizationName/$githubProjectName"),
+  credentials ++= {
+    val githubToken = System.getenv("GITHUB_TOKEN")
+    if (githubToken == null) Seq.empty
+    else Seq(Credentials("GitHub Package Registry", "maven.pkg.github.com", "_", githubToken))
+  }
 )
+
+lazy val root = project
+  .in(file("."))
+  .enablePlugins(PupScalafmtPlugin)
+  .settings(
+    name                  := "publication-platform-scala-lint-format",
+    description           := "Generate Scalafmt configuration package",
+    version               := "1.0-SNAPSHOT",
+    scalaVersion          := "3.3.1",
+    organizationName      := "JP/Politikens Hus",
+    organization          := "dk.jppol",
+    scalafmtConfig        := file("src/lint/.scalafmt-common.conf"),
+  )
+  .settings(publishSettings: _*)
+
 
 publishMavenStyle := true
 
