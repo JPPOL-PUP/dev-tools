@@ -16,16 +16,16 @@ lazy val root = project
   .in(file("."))
   .enablePlugins(PupScalafmtPlugin)
   .settings(
-    name                  := "publication-platform-scala-lint-format",
-    description           := "Generate Scalafmt configuration package",
-    version               := "1.0-SNAPSHOT",
+    name                  := "scala-lint-format",
+    description           := "Configuration package for scalafmt/scalafix",
     scalaVersion          := "3.3.1",
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
-    scalafmtConfig        := file("src/lint/.scalafmt-common.conf"),
+    scalafmtConfig        := file("./scala/src/lint/.scalafmt.conf"),
   )
   .settings(publishSettings: _*)
 
+scalafmtOnCompile := true
 
 publishMavenStyle := true
 
