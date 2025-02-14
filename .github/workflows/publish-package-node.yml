@@ -1,14 +1,12 @@
 name: Publish Package
 
 on:
-  push:
-    branches:
-      - feature/pup-466/format-package-node
-    paths:
-      - 'node/lint/node-lint-format/**'
+  release:
+    types: [published]
 
 jobs:
   publish:
+    if: contains(github.event.release.body, 'node-lint-format')
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
