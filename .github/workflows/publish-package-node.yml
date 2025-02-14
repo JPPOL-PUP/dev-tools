@@ -19,6 +19,14 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
 
+      - name: Extract version from release tag
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Update package.json version
+        run: |
+          npm version --no-git-tag-version "$VERSION"
+        working-directory: node/lint/node-lint-format
+
       - name: Install dependencies
         run: npm install
         working-directory: node/lint/node-lint-format
