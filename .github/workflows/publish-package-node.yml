@@ -6,7 +6,6 @@ on:
 
 jobs:
   publish:
-    if: contains(github.event.release.body, 'node-lint-format')
     runs-on: ubuntu-latest
 
     steps:
