@@ -15,16 +15,15 @@ lazy val publishSettings = Seq(
 lazy val root = project
   .in(file("."))
   .enablePlugins(PupScalafmtPlugin)
-  .settings(
+  .settings( Seq(
     name                  := "scala-lint-format",
     description           := "Configuration package for scalafmt/scalafix",
     scalaVersion          := "3.3.1",
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
-    scalafmtConfig        := file("./scala/src/lint/.scalafmt.conf"),
+    scalafmtConfig        := file(s"${baseDirectory.value}/src/scalafmt/.scalafmt.conf"),
     dynverVTagPrefix      := false
-  )
-  .settings(publishSettings: _*)
+  ) ++ publishSettings)
 
 scalafmtOnCompile := true
 

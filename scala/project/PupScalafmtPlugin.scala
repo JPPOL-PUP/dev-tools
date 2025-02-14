@@ -6,7 +6,7 @@ object PupScalafmtPlugin extends AutoPlugin {
   override def buildSettings: Seq[Def.Setting[_]] = {
     SettingKey[Unit]("scalafmtGenerateConfig") :=
       IO.write(
-        file("src/lint/.scalafmt-common.conf"),
+        file("src/scalafmt/.scalafmt-common.conf"),
         """version = 3.8.2
           |runner.dialect = scala3
           |project.git = true
