@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     branches:
-      - main
+      - feature/pup-466/format-package-node
     paths:
       - 'node/lint/node-lint-format/**'
 
