@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish package - node-lint-format
 run-name: Published package for - '${{ github.ref }}'
 
 on:
@@ -6,7 +6,7 @@ on:
     types: [published]
 
 jobs:
-  publish:
+  run:
     runs-on: ubuntu-latest
 
     steps:

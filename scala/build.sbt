@@ -22,6 +22,7 @@ lazy val root = project
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
     scalafmtConfig        := file("./scala/src/lint/.scalafmt.conf"),
+    dynverVTagPrefix      := false
   )
   .settings(publishSettings: _*)
 
