@@ -9,4 +9,4 @@ project/target/
 .coursier/
 .metals/
 .DS_Store
-node-modules/
+node_modules
