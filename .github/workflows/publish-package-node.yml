@@ -1,4 +1,5 @@
 name: Publish Package
+run-name: Published package for - '${{ github.ref }}'
 
 on:
   release:
