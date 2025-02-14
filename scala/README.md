@@ -1,11 +1,11 @@
 # Publication Platform Scala Lint Format
 
-This project is an SBT plugin that integrates Scalafmt and Scalafix for code formatting and linting in Scala projects.
+This project is an SBT plugin that integrates Scalafmt and Scalafix for code formatting and linting in Scala projects following standards of the Publication Platform team.
 
 ## Features
 
-- **Scalafmt**: Automatically formats your Scala code.
-- **Scalafix**: Provides linting and refactoring rules for your Scala code.
+- **Scalafmt**: Automatically formats Scala code.
+- **Scalafix**: Provides linting and refactoring rules for Scala code.
 
 ## Installation
 
@@ -13,4 +13,4 @@ This project is an SBT plugin that integrates Scalafmt and Scalafix for code for
 
    Add the following to your `project/plugins.sbt` file:
    ```scala
-   addSbtPlugin("your.organization" % "publication-platform-scala-lint-format" % "1.0-SNAPSHOT")
+   addSbtPlugin("dk.jppol" % "scala-lint-format" % "X.X.X")
