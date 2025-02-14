@@ -1,5 +1,5 @@
 name: Publish package - node-lint-format
-run-name: Published package for - '${{ github.ref }}'
+run-name: Published npm package for 'node-lint-format' - '${{ github.ref }}'
 
 on:
   release:

@@ -1,5 +1,5 @@
 name: Publish package - scala-lint-format
-run-name: Published package for - '${{ github.ref }}'
+run-name: Published maven package for 'scala-lint-format' - '${{ github.ref }}'
 
 on:
   release:
