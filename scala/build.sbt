@@ -6,9 +6,9 @@ val githubProjectName = "dev-tools"
 lazy val publishSettings = Seq(
   publishTo := Some(s"GitHub Package Registry ($githubProjectName)" at s"https://maven.pkg.github.com/$githubOrganizationName/$githubProjectName"),
   credentials ++= {
-    val githubToken = "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"
+    val githubToken = System.getenv("GITHUB_TOKEN")
     if (githubToken == null) Seq.empty
-    else Seq(Credentials("GitHub Package Registry", "maven.pkg.github.com", "rjefsen", githubToken))
+    else Seq(Credentials("GitHub Package Registry", "maven.pkg.github.com", "_", githubToken))
   }
 )
 
