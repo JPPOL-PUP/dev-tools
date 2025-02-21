@@ -7,6 +7,10 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scala
+
     steps:
       - uses: actions/checkout@v4
 
@@ -17,9 +21,6 @@ jobs:
           distribution: 'corretto'
           cache: 'sbt'
 
-      - name: list
-        run: ls -la
-
       - name: Set up SBT
         uses: sbt/setup-sbt@v1
         with:
@@ -28,6 +29,4 @@ jobs:
       - name: Publish package
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: |
-          cd scala
-          sbt publish
+        run: sbt publish
