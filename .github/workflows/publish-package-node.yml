@@ -2,7 +2,8 @@ name: Publish package - node-lint-format
 run-name: Published npm package for 'node-lint-format' - '${{ github.ref }}'
 
 on:
-  workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   run:

@@ -2,8 +2,8 @@ name: Publish package - scala-lint-format
 run-name: Published maven package for 'scala-lint-format' - '${{ github.ref }}'
 
 on:
-  workflow_dispatch:
-
+  release:
+    types: [published]
 jobs:
   run:
     runs-on: ubuntu-latest
