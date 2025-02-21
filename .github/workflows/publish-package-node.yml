@@ -2,12 +2,14 @@ name: Publish package - node-lint-format
 run-name: Published npm package for 'node-lint-format' - '${{ github.ref }}'
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: node
 
     steps:
       - name: Checkout repository
@@ -25,14 +27,11 @@ jobs:
       - name: Update package.json version
         run: |
           npm version --no-git-tag-version "$VERSION"
-        working-directory: node/lint/node-lint-format
 
       - name: Install dependencies
         run: npm install
-        working-directory: node/lint/node-lint-format
 
       - name: Publish package
         run: npm publish
-        working-directory: node/lint/node-lint-format
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
