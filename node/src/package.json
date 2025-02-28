@@ -1,5 +1,5 @@
 {
-    "name": "@JPPOL-PUP/biome-config",
+    "name": "@jppol-pup/biome-config",
     "version": "1.0.0",
     "main": "biome.json",
     "scripts": {
