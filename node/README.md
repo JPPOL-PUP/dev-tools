@@ -14,7 +14,7 @@ This project provides a shared Biome configuration for JavaScript projects.
    npm install --save-dev @jppol-pup/biome-config
    ```
 
-2. **Run Biome commands:**
+2. **You can now run Biome commands and set your IDE up to use it:**
 
    ```sh
    biome lint
@@ -41,20 +41,10 @@ This project provides a shared Biome configuration for JavaScript projects.
    }
    ```
 
-## Usage
+## Usage in ci
 
-- **Lint your project:**
-
-  ```sh
-  npm run lint
-  ```
-
-- **Format your project:**
+- **Formatter, linter and import sorting project (read-only):**
 
   ```sh
-  npm run format
+  npx biome ci
   ```
-
-## Configuration
-
-The `biome.json` file contains the shared Biome configuration. You can customize it as needed for your project.
