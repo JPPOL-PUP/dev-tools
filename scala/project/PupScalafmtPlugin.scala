@@ -7,7 +7,7 @@ object PupScalafmtPlugin extends AutoPlugin {
     SettingKey[Unit]("scalafmtGenerateConfig") :=
       IO.write(
         file("src/scalafmt/.scalafmt-common.conf"),
-        """version = 3.8.2
+        """version = 3.9.2
           |runner.dialect = scala3
           |project.git = true
           |indent.defnSite = 2
