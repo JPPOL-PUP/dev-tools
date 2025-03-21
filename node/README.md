@@ -41,10 +41,16 @@ This project provides a shared Biome configuration for JavaScript projects.
    }
    ```
 
-## Usage in ci
+## Usage in deployment pipeline
 
-- **Formatter, linter and import sorting project (read-only):**
+- Reusable workflow using biome's CI command running lint and format (Read-only): https://github.com/Jyllands-Posten/github-actions/blob/main/.github/workflows/node-run-biome.yml
 
-  ```sh
-  npx biome ci
+- **Example usage in pipeline:**
+
+  ```yml
+  lint_format:
+    needs: build
+    uses: Jyllands-Posten/github-actions/.github/workflows/node-run-biome.yml@v1.3.6
+    with:
+      node-version: "20.x"
   ```
