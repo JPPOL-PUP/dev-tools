@@ -30,6 +30,6 @@ lazy val root = project
 
 scalafmtOnCompile := true
 
-publishMavenStyle := false
+publishMavenStyle := true
 
 scalafixOnCompile := true
