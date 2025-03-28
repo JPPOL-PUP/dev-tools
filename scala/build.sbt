@@ -1,9 +1,9 @@
+sbtPlugin := true
+
 import scala.collection.Seq
 
 val githubOrganizationName = "JPPOL-PUP"
 val githubProjectName = "dev-tools"
-
-sbtPlugin := true
 
 lazy val publishSettings = Seq(
   publishTo := Some(s"GitHub Package Registry ($githubProjectName)" at s"https://maven.pkg.github.com/$githubOrganizationName/$githubProjectName"),
@@ -17,7 +17,7 @@ lazy val publishSettings = Seq(
 lazy val root = project
   .in(file("."))
   .enablePlugins(PupScalafmtPlugin)
-  .settings( Seq(
+  .settings(Seq(
     name                  := "scala-lint-format",
     description           := "Configuration package for scalafmt/scalafix",
     scalaVersion          := "2.12.17",
@@ -25,7 +25,12 @@ lazy val root = project
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
     scalafmtConfig        := file(s"${baseDirectory.value}/src/scalafmt/.scalafmt.conf"),
-    dynverVTagPrefix      := false
+    dynverVTagPrefix      := false,
+    commands ++= Seq(
+      Command.command("ciFormatAndLint") { state =>
+        "scalafmtAll" :: "scalafixAll --check" :: state
+      }
+    )
   ) ++ publishSettings)
 
 scalafmtOnCompile := true
