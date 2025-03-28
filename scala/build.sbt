@@ -1,9 +1,9 @@
-sbtPlugin := true
-
 import scala.collection.Seq
 
 val githubOrganizationName = "JPPOL-PUP"
 val githubProjectName = "dev-tools"
+
+sbtPlugin := true
 
 lazy val publishSettings = Seq(
   publishTo := Some(s"GitHub Package Registry ($githubProjectName)" at s"https://maven.pkg.github.com/$githubOrganizationName/$githubProjectName"),
