@@ -1,8 +1,12 @@
+package dk.jppol.pup
+
 import sbt._
 object PupScalafmtPlugin extends AutoPlugin {
   override def trigger                            = allRequirements
   override def requires                           = plugins.JvmPlugin
+
   println("PupScalafmtPlugin enabled")
+
   override def buildSettings: Seq[Def.Setting[_]] = {
     SettingKey[Unit]("scalafmtGenerateConfig") :=
       IO.write(
