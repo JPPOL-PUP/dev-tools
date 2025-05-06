@@ -3,8 +3,6 @@ import scala.collection.Seq
 val githubOrganizationName = "JPPOL-PUP"
 val githubProjectName = "dev-tools"
 
-sbtPlugin := true
-
 lazy val publishSettings = Seq(
   publishTo := Some(s"GitHub Package Registry ($githubProjectName)" at s"https://maven.pkg.github.com/$githubOrganizationName/$githubProjectName"),
   credentials ++= {
@@ -16,25 +14,17 @@ lazy val publishSettings = Seq(
 
 lazy val root = project
   .in(file("."))
-  .enablePlugins(PupScalafmtPlugin)
   .settings(Seq(
     name                  := "scala-lint-format",
     description           := "Configuration package for scalafmt/scalafix",
     scalaVersion          := "2.12.17",
-    crossSbtVersions      := Seq("1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"),
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
     scalafmtConfig        := file(s"${baseDirectory.value}/src/scalafmt/.scalafmt.conf"),
-    dynverVTagPrefix      := false,
-    commands ++= Seq(
-      Command.command("ciFormatAndLint") { state =>
-        "scalafmtAll" :: "scalafixAll --check" :: state
-      }
-    )
   ) ++ publishSettings)
 
 scalafmtOnCompile := true
 
-publishMavenStyle := true
-
 scalafixOnCompile := true
+
+publishMavenStyle := true
