@@ -20,7 +20,7 @@ lazy val root = project
     scalaVersion          := "2.12.17",
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
-    scalafmtConfig        := file(s"${baseDirectory.value}/src/scalafmt/.scalafmt.conf"),
+    scalafmtConfig        := file(s"${baseDirectory.value}/src/main/resources/scalafmt/.scalafmt.conf"),
   ) ++ publishSettings)
 
 scalafmtOnCompile := true
