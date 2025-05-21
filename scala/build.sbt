@@ -24,13 +24,7 @@ lazy val root = project
     crossSbtVersions      := Seq("1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"),
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol",
-    scalafmtConfig        := file(s"${baseDirectory.value}/src/scalafmt/.scalafmt.conf"),
-    dynverVTagPrefix      := false,
-    commands ++= Seq(
-      Command.command("ciFormatAndLint") { state =>
-        "scalafmtAll" :: "scalafixAll --check" :: state
-      }
-    )
+    scalafmtConfig        := file(s"${baseDirectory.value}/src/scalafmt/.scalafmt.conf")
   ) ++ publishSettings)
 
 scalafmtOnCompile := true
