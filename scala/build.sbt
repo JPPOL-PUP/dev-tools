@@ -19,7 +19,7 @@ lazy val root = project
     sbtPlugin             := true,
     name                  := "scala-lint-format",
     description           := "Configuration package for scalafmt/scalafix",
-    scalaVersion          := "2.12.17",
+    scalaVersion          := "2.12.18",
     organizationName      := "JP/Politikens Hus",
     organization          := "dk.jppol"
   ) ++ publishSettings)
