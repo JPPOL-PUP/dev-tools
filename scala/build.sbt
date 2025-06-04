@@ -26,8 +26,4 @@ lazy val root = project
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
 
-scalafmtOnCompile := true
-
 publishMavenStyle := true
-
-//scalafixOnCompile := true
