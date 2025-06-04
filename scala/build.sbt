@@ -24,6 +24,8 @@ lazy val root = project
     organization          := "dk.jppol"
   ) ++ publishSettings)
 
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
+
 scalafmtOnCompile := true
 
 publishMavenStyle := true
