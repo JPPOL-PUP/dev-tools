@@ -6,8 +6,11 @@ import org.scalafmt.sbt.ScalafmtPlugin
 import org.scalafmt.sbt.ScalafmtPlugin.autoImport._
 
 object PupScalafmtPlugin extends AutoPlugin {
+
+  println("[DEBUG] PupScalafmtPlugin object is being initialized!")
+
   override def trigger = allRequirements
-  override def requires = ScalafmtPlugin
+  override def requires = plugins.JvmPlugin
 
   object autoImport {
     val pupScalafmtGenerateConfig = taskKey[Unit]("Generate the standard scalafmt config file")
@@ -15,8 +18,10 @@ object PupScalafmtPlugin extends AutoPlugin {
   import autoImport._
 
   private def ensureConfigFileExists(baseDir: File): File = {
+    println(s"[DEBUG] ensureConfigFileExists called with baseDir: $baseDir")
     val confFile = baseDir / ".scalafmt.conf"
     if (!confFile.exists()) {
+      println(s"[DEBUG] Creating scalafmt config file at: $confFile")
       IO.write(
         confFile,
         """version = 3.9.2
@@ -34,20 +39,41 @@ object PupScalafmtPlugin extends AutoPlugin {
           |align.stripMargin = true
           |""".stripMargin
       )
+      println(s"[DEBUG] Successfully created scalafmt config file")
+    } else {
+      println(s"[DEBUG] Scalafmt config file already exists at: $confFile")
     }
     confFile
   }
 
-  override val projectSettings: Seq[Def.Setting[_]] = Seq(
-    scalafmtConfig := {
-      val baseDir = (ThisBuild / baseDirectory).value
-      ensureConfigFileExists(baseDir)
-    },
+  private val customSettings: Seq[Def.Setting[_]] = {
+    println("[DEBUG] customSettings being evaluated")
+    Seq(
+      scalafmtConfig := {
+        println("[DEBUG] scalafmtConfig setting being evaluated")
+        val baseDir = (ThisBuild / baseDirectory).value
+        println(s"[DEBUG] scalafmtConfig - baseDir: $baseDir")
+        ensureConfigFileExists(baseDir)
+      },
 
-    pupScalafmtGenerateConfig := {
-      val baseDir = (ThisBuild / baseDirectory).value
-      ensureConfigFileExists(baseDir)
-      println(s"Scalafmt config created at ${baseDir / ".scalafmt.conf"}")
-    }
-  )
+      pupScalafmtGenerateConfig := {
+        println("[DEBUG] pupScalafmtGenerateConfig task being executed")
+        val baseDir = (ThisBuild / baseDirectory).value
+        println(s"[DEBUG] pupScalafmtGenerateConfig - baseDir: $baseDir")
+        ensureConfigFileExists(baseDir)
+        println(s"Scalafmt config created at ${baseDir / ".scalafmt.conf"}")
+      }
+    )
+  }
+
+  override val projectSettings: Seq[Def.Setting[_]] = {
+    println("[DEBUG] Plugin is being applied to a project!")
+    customSettings
+  }
+
+  // Debug: Check if globalSettings is being called
+  override def globalSettings: Seq[Def.Setting[_]] = {
+    println("[DEBUG] globalSettings being evaluated")
+    super.globalSettings
+  }
 }
