@@ -24,8 +24,4 @@ lazy val root = project
     organization          := "dk.jppol"
   ) ++ publishSettings)
 
-scalafmtOnCompile := true
-
 publishMavenStyle := true
-
-//scalafixOnCompile := true
