@@ -5,14 +5,14 @@ import Keys._
 import org.scalafmt.sbt.ScalafmtPlugin
 import org.scalafmt.sbt.ScalafmtPlugin.autoImport._
 
-object PupScalafmtPlugin extends AutoPlugin {
+object PupLintFormatPlugin extends AutoPlugin {
   override def trigger  = allRequirements
   override def requires = plugins.JvmPlugin
 
   object autoImport {
-    val pupScalafmtGenerateConfig = taskKey[Unit]("Generate scalafmt config file")
-    val pupScalafixGenerateConfig = taskKey[Unit]("Generate scalafix config file")
-    val pupGenerateAllConfigs     =
+    val scalafmtGenerateConfig = taskKey[Unit]("Generate scalafmt config file")
+    val scalafixGenerateConfig = taskKey[Unit]("Generate scalafix config file")
+    val generateAllConfigs     =
       taskKey[Unit]("Generate scalafmt and scalafix config files")
   }
   import autoImport._
@@ -84,15 +84,15 @@ object PupScalafmtPlugin extends AutoPlugin {
       val baseDir = (ThisBuild / baseDirectory).value
       ensureScalafmtConfigExists(baseDir)
     },
-    pupScalafmtGenerateConfig := {
+    scalafmtGenerateConfig := {
       val baseDir = (ThisBuild / baseDirectory).value
       ensureScalafmtConfigExists(baseDir)
     },
-    pupScalafixGenerateConfig := {
+    scalafixGenerateConfig := {
       val baseDir = (ThisBuild / baseDirectory).value
       ensureScalafixConfigExists(baseDir)
     },
-    pupGenerateAllConfigs     := {
+    generateAllConfigs     := {
       val baseDir = (ThisBuild / baseDirectory).value
       ensureScalafmtConfigExists(baseDir)
       ensureScalafixConfigExists(baseDir)
