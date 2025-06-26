@@ -35,49 +35,11 @@ object PupLintFormatPlugin extends AutoPlugin {
     confFile
   }
 
-  private val scalafmtConfigContent =
-    """version = 3.9.2
-      |runner.dialect = scala3
-      |project.git = true
-      |indent.defnSite = 2
-      |trailingCommas = multiple
-      |docstrings.style = SpaceAsterisk
-      |docstrings.wrap = yes
-      |maxColumn = 82
-      |indentYieldKeyword = false
-      |
-      |align.preset = more
-      |align.multiline = true
-      |align.stripMargin = true
-      |""".stripMargin
+  private def loadResourceAsString(name: String): String =
+    IO.readStream(getClass.getResourceAsStream(s"/$name"))
 
-  private val scalafixConfigContent =
-    """rules = [
-      |  OrganizeImports,
-      |  DisableSyntax,
-      |  LeakingImplicitClassVal,
-      |  NoValInForComprehension
-      |]
-      |
-      |OrganizeImports.groupedImports = Merge
-      |OrganizeImports.expandRelative = true
-      |OrganizeImports.removeUnused = true
-      |OrganizeImports.groups = [
-      |  "re:javax?\\."
-      |  "scala."
-      |  "*"
-      |  "re:^\\w+\\."
-      |]
-      |
-      |DisableSyntax.noVars = true
-      |DisableSyntax.noThrows = true
-      |DisableSyntax.noNulls = true
-      |DisableSyntax.noReturns = true
-      |DisableSyntax.noWhileLoops = true
-      |DisableSyntax.noAsInstanceOf = false
-      |DisableSyntax.noIsInstanceOf = false
-      |DisableSyntax.noXml = true
-      |""".stripMargin
+  private lazy val scalafmtConfigContent = loadResourceAsString("scalafmt.conf")
+  private lazy val scalafixConfigContent = loadResourceAsString("scalafix.conf")
 
   override val projectSettings: Seq[Def.Setting[_]] = Seq(
     scalafmtConfig            := {
