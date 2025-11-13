@@ -11,3 +11,4 @@ project/target/
 .DS_Store
 node_modules
 .bsp/
+**venv/
